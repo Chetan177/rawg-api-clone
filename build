@@ -1,0 +1,19 @@
+#!/bin/bash
+ORG_PATH="rawg"
+REPO_PATH="${ORG_PATH}/cmd"
+
+build() {
+  out="bin"
+  if [[ -n "${BINDIR}" ]]; then out="${BINDIR}"; fi
+
+  # shellcheck disable=SC2086
+  CGO_ENABLED=0 go build $GO_BUILD_FLAGS \
+  -installsuffix cgo \
+  -ldflags "$GO_LDFLAGS" \
+  -o "${out}/server" ${REPO_PATH}/server || return
+
+}
+
+if echo "$0" | grep "build$" >/dev/null; then
+  build
+fi
