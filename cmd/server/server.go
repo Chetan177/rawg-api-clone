@@ -7,7 +7,7 @@ import (
 
 	"github.com/labstack/gommon/log"
 )
-
+// Main method to start the API server
 func main() {
 	sig := make(chan os.Signal, 1)
 	done := make(chan bool, 1)
