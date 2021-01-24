@@ -23,6 +23,7 @@ jobs:
       
     - name: Build
       run: |
+        chmod +x build
         ./build
 
     - name: Test
