@@ -25,6 +25,3 @@ jobs:
       run: |
         chmod +x build
         ./build
-
-    - name: Test
-      run: go test -v ./...
