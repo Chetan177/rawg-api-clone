@@ -19,6 +19,7 @@ func (s *Server) loadGamesAPIRoutes(group *echo.Group) {
 // getGameAPIRoutes method returns routes
 func (s *Server) getGameAPIRoutes() []route {
 	return []route{
+		// route for games/
 		{"", s.getGames},
 
 	}

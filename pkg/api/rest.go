@@ -5,6 +5,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"rawg/pkg/storage/mongo"
 	"sync"
 
 	"github.com/labstack/echo/v4"
@@ -15,6 +16,7 @@ import (
 type Server struct {
 	port       int
 	echoServer *echo.Echo
+	db     *mongo.Connection
 }
 
 const gameRoute = "/games"
@@ -40,9 +42,13 @@ func createServer(restPort int) *Server {
 	apiServer.Pre(middleware.RemoveTrailingSlash())
 	apiServer.GET("/health", healthCheck)
 
+	// connect db
+	dbConn := mongo.NewStorage("mongodb://localhost:27017", "gamesdb", "games")
+
 	return &Server{
 		port:       restPort,
 		echoServer: apiServer,
+		db : dbConn,
 	}
 }
 

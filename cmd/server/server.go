@@ -2,12 +2,9 @@ package main
 
 import (
 	"fmt"
-	"go.mongodb.org/mongo-driver/bson"
+	"github.com/labstack/gommon/log"
 	"os"
 	"rawg/pkg/api"
-	"rawg/pkg/storage/mongo"
-
-	"github.com/labstack/gommon/log"
 )
 
 // Main method to start the API server
@@ -20,15 +17,6 @@ func main() {
 	if err != nil {
 		log.Error("error starting api server: %+v", err)
 	}
-	// test
-	dbConnection := mongo.NewStorage("mongodb://localhost:27017", "gamesdb", "games")
-	m := &api.Game{}
-	filter := bson.D{{"id", 3498}}
-	err = dbConnection.Get(filter, m)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Printf(" model %+v", m)
 
 	go func() {
 		sig := <-sig

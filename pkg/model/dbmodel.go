@@ -1,4 +1,4 @@
-package api
+package model
 
 // Game Struct represent the whole data structure in mongodb
 type Game struct {
@@ -131,3 +131,4 @@ type Screenshot struct {
 	Id    int    `bson:"id"`
 	Image string `bson:"image"`
 }
+

@@ -7,5 +7,7 @@ import (
 
 func (s *Server) getGames(c echo.Context) error{
 
+
+
 	return c.JSON(http.StatusOK,"games api working")
 }
